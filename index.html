@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Open uLoop App</title>
+  <script>
+    function openApp() {
+      const params = new URLSearchParams(window.location.search);
+      const songId = params.get("songid") || "";
+      const appUrl = "uloop://songid=" + songId;
+      window.location = appUrl;
+
+      // Fallback if app isn't installed
+      setTimeout(() => {
+        window.location.href = "https://yourdomain.com/download"; // Or App Store / Play Store
+      }, 2000);
+    }
+  </script>
+</head>
+<body onload="openApp()">
+  <p>Opening in the uLoop app...</p>
+</body>
+</html>
