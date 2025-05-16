@@ -6,7 +6,7 @@
     function openApp() {
       const params = new URLSearchParams(window.location.search);
       const song = params.get("song") || "";
-      const appUrl = "uloop://song=" + song;
+      const appUrl = "uloop://song/" + song;
       window.location = appUrl;
 
       // Fallback if app isn't installed
