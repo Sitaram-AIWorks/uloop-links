@@ -7,11 +7,22 @@
       const params = new URLSearchParams(window.location.search);
       const song = params.get("song") || "";
       const appUrl = "uloop://song/" + song;
+
+      // Try to open the app
       window.location = appUrl;
 
-      // Fallback if app isn't installed
+      // Fallback after 2 seconds
       setTimeout(() => {
-        window.location.href = "https://aiworkstech.com/uloop-music"; // Or App Store / Play Store
+        const isAndroid = /Android/i.test(navigator.userAgent);
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        if (isAndroid) {
+          window.location.href = "https://play.google.com/store/apps/details?id=com.uloop&pcampaignid=web_share";
+        } else if (isIOS) {
+          window.location.href = "https://apple.co/42P4foP";
+        } else {
+          window.location.href = "https://aiworkstech.com/uloop-music"; // General fallback
+        }
       }, 2000);
     }
   </script>
